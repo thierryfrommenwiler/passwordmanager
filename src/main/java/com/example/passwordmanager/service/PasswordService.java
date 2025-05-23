@@ -34,6 +34,12 @@ public class PasswordService {
     }
 
     public PasswordEntry save(PasswordEntry entry) {
+        // Stelle sicher, dass die Website mit https:// oder http:// beginnt
+        if (entry.getWebsite() != null &&
+                !entry.getWebsite().startsWith("http://") &&
+                !entry.getWebsite().startsWith("https://")) {
+            entry.setWebsite("https://" + entry.getWebsite());
+        }
         return repository.save(entry);
     }
 }

@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let allEntries = [];
     let editingId = null;
 
+    function isValidURL(string) {
+        try {
+            new URL(string.startsWith("http") ? string : "https://" + string);
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
         const master = document.getElementById('master').value;
@@ -37,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${entry.website}</td>
+                <td><a href="${entry.website}" target="_blank">${entry.website}</a></td>
                 <td>${entry.username}</td>
                 <td>
                     <span id="pw-${entry.id}">********</span>
@@ -74,6 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const website = document.getElementById('website').value;
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+
+        if (!isValidURL(website)) {
+            alert("Bitte eine gültige URL eingeben (z. B. example.com oder https://example.com)");
+            return;
+        }
 
         const payload = { website, username, password };
         const method = editingId ? 'PUT' : 'POST';
