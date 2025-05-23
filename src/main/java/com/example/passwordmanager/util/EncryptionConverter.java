@@ -10,7 +10,7 @@ import java.util.Base64;
 
 @Converter
 public class EncryptionConverter implements AttributeConverter<String, String> {
-
+    //Key für Verschlüsselung
     private static final String SECRET_KEY = "secret1234567890";
     private static final SecretKeySpec key = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
 
