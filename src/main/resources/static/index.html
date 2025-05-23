@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Passwortmanager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<h1>Login</h1>
+<form id="loginForm">
+    <label for="master">Master-Passwort:</label>
+    <input type="password" id="master" required>
+    <button type="submit"><i class="fas fa-unlock-alt"></i> Login</button>
+</form>
+
+<div id="app" style="display:none;">
+    <h1>Passwortmanager</h1>
+    <button id="addEntryBtn"><i class="fas fa-plus"></i> Eintrag hinzufügen</button>
+    <input type="text" id="searchInput" placeholder="🔍 Suche nach Website oder Benutzername..." style="margin: 20px 0; width: 300px;">
+
+    <table id="entriesTable">
+        <thead>
+        <tr>
+            <th onclick="sortEntries('website')">Webseite <i class="fas fa-sort"></i></th>
+            <th onclick="sortEntries('username')">Benutzername <i class="fas fa-sort"></i></th>
+            <th>Passwort</th>
+            <th>Aktionen</th>
+        </tr>
+        </thead>
+        <tbody id="entriesBody"></tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div id="entryModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="modalClose">&times;</span>
+        <h2 id="modalTitle">Eintrag hinzufügen</h2>
+        <form id="entryForm">
+            <label for="website">Webseite:</label>
+            <input type="text" id="website" name="website" required>
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Passwort:</label>
+            <input type="text" id="password" name="password" required>
+            <button type="button" id="generate"><i class="fas fa-key"></i> Passwort generieren</button>
+            <button type="submit"><i class="fas fa-save"></i> Speichern</button>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
