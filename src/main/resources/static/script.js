@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const entryForm = document.getElementById('entryForm');
@@ -21,6 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (_) {
             return false;
         }
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast("In den Zwischenspeicher kopiert!");
+        }).catch(err => {
+            console.error("Fehler beim Kopieren: ", err);
+        });
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.style.display = 'block';
+        toast.classList.add('show');
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.style.display = 'none';
+        }, 2000);
     }
 
     loginForm.addEventListener('submit', e => {
@@ -47,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td><a href="${entry.website}" target="_blank">${entry.website}</a></td>
-                <td>${entry.username}</td>
+                <td style="cursor:pointer;" title="Klicken zum Kopieren" onclick="copyToClipboard('${entry.username}')">${entry.username}</td>
                 <td>
-                    <span id="pw-${entry.id}">********</span>
+                    <span id="pw-${entry.id}" style="cursor:pointer;" title="Klicken zum Kopieren" onclick="copyToClipboard('${entry.password}')">********</span>
                     <button onclick="togglePassword('${entry.id}', '${entry.password}')"><i class="fas fa-eye"></i></button>
                 </td>
                 <td>
@@ -173,4 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             entryForm.reset();
         }
     };
+
+    // Für Zugriff durch HTML inline onclick
+    window.copyToClipboard = copyToClipboard;
 });
