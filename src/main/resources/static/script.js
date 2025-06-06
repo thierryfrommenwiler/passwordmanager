@@ -196,3 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Für Zugriff durch HTML inline onclick
     window.copyToClipboard = copyToClipboard;
 });
+document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    // App verstecken
+    document.getElementById('app').style.display = 'none';
+    // Login-Form wieder anzeigen
+    document.getElementById('loginForm').style.display = 'block';
+    // Master-Passwort-Feld leeren
+    document.getElementById('master').value = '';
+});
