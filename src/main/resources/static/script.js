@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allEntries = [];
     let editingId = null;
 
+    //Prüft ob gültige URL, wenn URL ohne http(s) dann wird https:// ergänzt
     function isValidURL(string) {
         try {
             new URL(string.startsWith("http") ? string : "https://" + string);
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    //Kopiert Text (Passwort) in Zwischenablage
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
             showToast("In den Zwischenspeicher kopiert!");
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //Zeigt Passwort an
     function showToast(message) {
         const toast = document.getElementById('toast');
         toast.textContent = message;
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 
+    //Validierung Login
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
         const master = document.getElementById('master').value;
@@ -60,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    //Aufbau App Ansicht (Tabelle mit Einträgen)
     function renderEntries(entries) {
         entriesBody.innerHTML = '';
         entries.forEach(entry => {
@@ -80,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //Laden der Einträge
     function loadEntries() {
         fetch('/api/passwords')
             .then(response => response.json())
