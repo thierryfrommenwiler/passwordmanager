@@ -4,6 +4,11 @@ package com.example.passwordmanager.entity;
 import jakarta.persistence.*;
 import com.example.passwordmanager.util.EncryptionConverter;
 
+/**
+ * Entitätsklasse, die einen Eintrag in der Passwort-Datenbank darstellt.
+ * Wird von JPA (Hibernate) verwendet, um mit einer Datenbanktabelle zu arbeiten.
+ */
+
 @Entity
 public class PasswordEntry {
 
