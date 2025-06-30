@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST-Controller zur Verwaltung von Passwort-Einträgen.
+ * Dieser Controller stellt HTTP-Endpunkte für CRUD-Operationen bereit.
+ */
+
 @RestController
 @RequestMapping("/api/passwords")
 public class PasswordEntryController {
@@ -19,16 +24,19 @@ public class PasswordEntryController {
         this.service = service;
     }
 
+    //Liefert alle gespeicherten Passwort-Einträge
     @GetMapping
     public List<PasswordEntry> getAll() {
         return service.findAll();
     }
 
+    //Speichert einen neuen Passwort-Eintrag
     @PostMapping
     public PasswordEntry save(@RequestBody PasswordEntry entry) {
         return service.save(entry);
     }
 
+    //Aktualisiert einen bestehenden Eintrag mit der angegebenen ID
     @PutMapping("/{id}")
     public ResponseEntity<PasswordEntry> update(@PathVariable Long id, @RequestBody PasswordEntry updatedEntry) {
         return service.findById(id)
@@ -41,6 +49,7 @@ public class PasswordEntryController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    //Löscht den Eintrag mit der angegebenen ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (service.existsById(id)) {
@@ -50,6 +59,7 @@ public class PasswordEntryController {
         return ResponseEntity.notFound().build();
     }
 
+    //Generiert ein zufälliges Passwort
     @GetMapping("/generate")
     public String generatePassword() {
         return PasswordGenerator.generate();
