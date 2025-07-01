@@ -4,15 +4,12 @@ package ch.zhaw.passwordmanager.entity;
 import jakarta.persistence.*;
 import ch.zhaw.passwordmanager.util.EncryptionConverter;
 
-/**
- * Entitätsklasse, die einen Eintrag in der Passwort-Datenbank darstellt.
- * Wird von JPA (Hibernate) verwendet, um mit einer Datenbanktabelle zu arbeiten.
- */
 
+// Entity ist eine Javaklasse die von Hibernate als Tabelle interpretiert wird
 @Entity
 public class PasswordEntry {
 
-    @Id
+    @Id //Legt den PrimaryKey fest
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

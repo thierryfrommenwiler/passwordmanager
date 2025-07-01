@@ -47,15 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Validierung Login
     loginForm.addEventListener('submit', e => {
+
         e.preventDefault();
         const master = document.getElementById('master').value;
+
+        //Schickt das MasterPW an den Login Endpoint
         fetch('/api/auth/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({masterPassword: master})
         }).then(res => {
             if (res.ok) {
+                // deaktiviert Login view
                 loginForm.style.display = 'none';
+                // aktiviert App view
                 app.style.display = 'block';
                 loadEntries();
             } else {
