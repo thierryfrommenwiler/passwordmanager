@@ -16,7 +16,7 @@ public class PasswordEntry {
     private String website;
     private String username;
 
-    @Convert(converter = EncryptionConverter.class)// benutzt einen speziellen Konverter zum Verschlüsseln/Entschlüsseln
+    @Convert(converter = EncryptionConverter.class)// benutzt den Konverter in Util/EncryptionConverter zum Verschlüsseln/Entschlüsseln
     private String password;
 
     // Getter & Setter

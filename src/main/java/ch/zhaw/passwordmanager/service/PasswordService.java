@@ -11,7 +11,7 @@ import java.util.Optional;
 // Diese Klasse enthält die eigentliche Logik zum Verwalten der Passwörter
 @Service
 public class PasswordService {
-    // Spring erkennt @Service und stellt das PasswordEntryRepository bereit und wird unten dem Konst. übergeben
+    // Spring erkennt @Service und stellt das PasswordEntryRepository bereit und wird unten dem Konstruktor übergeben
     private final PasswordEntryRepository repository;
 
     // Repository wird über Konstruktor iniziert

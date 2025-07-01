@@ -8,7 +8,7 @@ Ein kleines Projekt mit Spring Boot und HTML/JavaScript. Damit kann man Passwör
 - Login mit Master-Passwort
 - Passwörter speichern (mit Website, Benutzername und Passwort)
 - Passwörter bearbeiten und löschen
-- Passwörter werden AES-verschlüsselt in der Datenbank gespeichert
+- Passwörter werden AES-verschlüsselt in einer H2 Datenbank gespeichert
 - Neue sichere Passwörter lassen sich automatisch generieren
 - Einfache Benutzeroberfläche im Browser
 - REST-API für alle Funktionen
@@ -23,23 +23,12 @@ Das Projekt besteht aus:
 - einer eingebauten Datenbank (H2)
 
 ## Starten
+- PasswordmanagerApplication Starten.
 
-Voraussetzung: Java und Maven
-
-Starten mit:
-
-```
-
-./mvnw spring-boot\:run
+- Danach läuft es unter:
 
 ```
-
-Danach läuft es unter:
-
-```
-
-[http://localhost:8080](http://localhost:8080)
-
+http://localhost:8080
 ````
 
 ## Master-Passwort

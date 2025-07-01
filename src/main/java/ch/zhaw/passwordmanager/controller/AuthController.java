@@ -15,7 +15,6 @@ public class AuthController {
 
     // Methode wenn jemand eine POST request an /api/auth/login sendet
     @PostMapping("/login")
-
     public ResponseEntity<?> login(@RequestBody AuthRequest request) {
         //Prüfung ob das eingegebene PW mit dem MasterPW übereinstimmt
         if (MASTER_PASSWORD.equals(request.getMasterPassword())) {
