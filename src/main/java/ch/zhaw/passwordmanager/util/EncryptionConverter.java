@@ -19,12 +19,16 @@ public class EncryptionConverter implements AttributeConverter<String, String> {
     @Override
     public String convertToDatabaseColumn(String attribute) {
         try {
-            Cipher cipher = Cipher.getInstance("AES"); // AES-Verschlüsselung holen
-            cipher.init(Cipher.ENCRYPT_MODE, key); // Modus: verschlüsseln
+            // Fragt die crypto API nach dem AES-Cipher
+            Cipher cipher = Cipher.getInstance("AES");
+
+            //Erstellung leeres Cipher Objekt im Verschlüsselungsmodus
+            cipher.init(Cipher.ENCRYPT_MODE, key);
 
             // Verschlüsseltes Ergebnis wird in Base64 umgewandelt (damit es als Text gespeichert werden kann)
             return Base64.getEncoder()
                     .encodeToString(
+                            // Rechnet das 'attribute' mit AES um und liefert verschlüsselte Bytes
                             cipher.doFinal(attribute.getBytes())
                     );
         } catch (Exception e) {
