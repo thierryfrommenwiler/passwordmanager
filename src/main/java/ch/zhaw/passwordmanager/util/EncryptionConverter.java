@@ -23,7 +23,10 @@ public class EncryptionConverter implements AttributeConverter<String, String> {
             cipher.init(Cipher.ENCRYPT_MODE, key); // Modus: verschlüsseln
 
             // Verschlüsseltes Ergebnis wird in Base64 umgewandelt (damit es als Text gespeichert werden kann)
-            return Base64.getEncoder().encodeToString(cipher.doFinal(attribute.getBytes()));
+            return Base64.getEncoder()
+                    .encodeToString(
+                            cipher.doFinal(attribute.getBytes())
+                    );
         } catch (Exception e) {
             //imfalle eines Fehlers wird hier eine Exception geworfen
             throw new IllegalStateException(e);
